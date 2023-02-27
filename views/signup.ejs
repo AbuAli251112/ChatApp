@@ -1,0 +1,53 @@
+        <%- include('parts/header')%>
+        <%- include('parts/navbar')%>
+
+        <div class="container text-center">
+            <h3 class="mt-3 mb-3">Create Account</h3>
+            <form action="signup" method="POST">
+                <input type="text" class="form-control mt-2" name="username" placeholder="Username">
+                <% let usernameError = validationErrors.find(err => err.param === 'username') %>
+                <% if (usernameError) { %>
+                    <div class="alert alert-danger mt-2">
+                        <%= usernameError.msg %>
+                    </div>
+                <% } %>
+                <input type="email" class="form-control mt-2" name="email" placeholder="E-mail">
+                <% let emailError = validationErrors.find(err => err.param === 'email') %>
+                <% if (emailError) { %>
+                    <div class="alert alert-danger mt-2">
+                        <%= emailError.msg %>
+                    </div>
+                <% } %>
+                <input type="password" class="form-control mt-2" name="password" placeholder="Password">
+                <% let passwordError = validationErrors.find(err => err.param === 'password') %>
+                <% if (passwordError) { %>
+                    <div class="alert alert-danger mt-2">
+                        <%= passwordError.msg %>
+                    </div>
+                <% } %>
+                <input type="password" class="form-control mt-2" name="confirmPassword" placeholder="Confirm Password">
+                <% let passwordConfirmError = validationErrors.find(err => err.param === 'passwordConfirm') %>
+                <% if (passwordConfirmError) { %>
+                    <div class="alert alert-danger mt-2">
+                        <%= passwordConfirmError.msg %>
+                    </div>
+                <% } %>
+                <input type="submit" value="Create Account" class="btn btn-primary mt-3">
+            </form>
+            <% if(authError) { %>
+                <br>
+                <div class="alert alert-danger mt-2">
+                    <%= authError%>
+                </div>
+            <% } %>
+
+            <br>
+            <div>
+                Already have account ? <a href="/login">Login</a>
+            </div>
+        </div>
+
+        <%- include('parts/scripts')%>
+
+    </body>
+</html>
